@@ -2,15 +2,15 @@
     <g class="graph">
         <path fill="#fff" d="M0 188V0h416.24v188z"/>
         <g class="node" transform="translate(4 184)">
-            <ellipse cx="178.07" cy="-162" fill="none" stroke="#000" rx="78.48" ry="18"/>
-            <text x="178.07" y="-156.95" font-family="Times,serif" font-size="14" text-anchor="middle">:feature:login:data</text>
+            <ellipse cx="178.07" cy="-162" fill="none" stroke="#000" rx="87.69" ry="18"/>
+            <text x="178.07" y="-156.95" font-family="Times,serif" font-size="14" text-anchor="middle">:feature:product:data</text>
         </g>
         <g class="node" transform="translate(4 184)">
             <ellipse cx="39.07" cy="-18" fill="none" stroke="#000" rx="39.07" ry="18"/>
             <text x="39.07" y="-12.95" font-family="Times,serif" font-size="14" text-anchor="middle">:core:ui</text>
         </g>
         <g stroke="#000" class="edge">
-            <path fill="none" d="M153.09 39.09C137.5 48.58 118.57 61.56 104.07 76c-18.7 18.63-35.3 43.71-46.44 62.5"/>
+            <path fill="none" d="M152.71 39.32C137.2 48.79 118.45 61.67 104.07 76c-18.7 18.63-35.3 43.71-46.44 62.5"/>
             <path d="m60.81 139.99-8.03 6.91 1.97-10.41z"/>
         </g>
         <g class="node" transform="translate(4 184)">
@@ -18,7 +18,7 @@
             <text x="178.07" y="-12.95" font-family="Times,serif" font-size="14" text-anchor="middle">:core:designsystem</text>
         </g>
         <g stroke="#000" class="edge">
-            <path fill="none" d="M150.04 38.89c-14.08 8.82-29.16 21.26-36.97 37.11-7.08 14.35-7.08 21.65 0 36 6.1 12.38 16.64 22.68 27.68 30.8"/>
+            <path fill="none" d="M149.68 39.11c-13.97 8.82-28.87 21.17-36.61 36.89-7.08 14.35-7.08 21.65 0 36 6.1 12.38 16.64 22.68 27.68 30.8"/>
             <path d="m142.48 139.75 6.31 8.51-10.24-2.72z"/>
         </g>
         <g class="node" transform="translate(4 184)">
@@ -26,7 +26,7 @@
             <text x="343.07" y="-12.95" font-family="Times,serif" font-size="14" text-anchor="middle">:core:common</text>
         </g>
         <g stroke="#000" class="edge">
-            <path fill="none" d="M250.59 31.09C305.27 39.11 375.53 53.51 393.07 76c15.49 19.86-1.27 45.73-18.74 64.46"/>
+            <path fill="none" d="M256.35 31.95C310.09 40.13 376.14 54.3 393.07 76c15.49 19.86-1.27 45.73-18.74 64.46"/>
             <path d="m376.94 142.79-9.52 4.65 4.55-9.57z"/>
         </g>
         <g class="node" transform="translate(4 184)">
@@ -42,8 +42,8 @@
             <text x="318.07" y="-84.95" font-family="Times,serif" font-size="14" text-anchor="middle">:core:network</text>
         </g>
         <g stroke="#000" class="edge">
-            <path fill="none" d="M213.84 38.88c20.1 10.06 46.28 23.15 67.85 33.93"/>
-            <path d="m283.13 69.62 7.38 7.6L280 75.88z"/>
+            <path fill="none" d="M214.19 39.06c20.12 10.06 46.21 23.11 67.69 33.85"/>
+            <path d="m283.28 69.69 7.38 7.61-10.51-1.35z"/>
         </g>
         <g stroke="#000" class="edge">
             <path fill="none" d="M152.25 110.02c-21.49 10.82-50.58 25.47-73.33 36.93"/>
