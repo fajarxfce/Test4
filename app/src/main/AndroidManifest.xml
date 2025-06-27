@@ -21,7 +21,7 @@
 
 
     <application
-        android:name="com.fajarxfce.apps.NiaApplication"
+        android:name="com.fajarxfce.test4.Test4Application"
         android:allowBackup="true"
         android:usesCleartextTraffic="true"
         android:enableOnBackInvokedCallback="true"
@@ -33,7 +33,7 @@
         <profileable android:shell="true" tools:targetApi="q" />
 
         <activity
-            android:name="com.fajarxfce.apps.MainActivity"
+            android:name="com.fajarxfce.apps.com.fajarxfce.test4.MainActivity"
             android:configChanges="uiMode"
             android:exported="true">
             <intent-filter>

@@ -1,20 +1,4 @@
-import com.fajarxfce.apps.NiaBuildType
-
-/*
- * Copyright 2022 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+import com.fajarxfce.test4.NiaBuildType
 
 plugins {
     alias(libs.plugins.nowinandroid.android.application)
@@ -30,12 +14,12 @@ plugins {
 
 android {
     defaultConfig {
-        applicationId = "com.fajarxfce.apps"
+        applicationId = "com.fajarxfce.test4"
         versionCode = 8
         versionName = "0.1.2" // X.Y.Z; X = Major, Y = minor, Z = Patch level
 
         // Custom test runner to set up Hilt dependency graph
-        testInstrumentationRunner = "com.google.samples.apps.nowinandroid.core.testing.NiaTestRunner"
+        testInstrumentationRunner = "com.fajarxfce.core.testing.NiaTestRunner"
     }
 
     buildTypes {
@@ -67,20 +51,15 @@ android {
             isIncludeAndroidResources = true
         }
     }
-    namespace = "com.fajarxfce.apps"
+    namespace = "com.fajarxfce.test4"
 }
 
 dependencies {
     implementation(projects.navigation)
     implementation(projects.core.common)
-    implementation(projects.core.datastore)
     implementation(projects.core.ui)
 
     implementation(projects.feature.login.data)
-    implementation(projects.feature.splash.data)
-    implementation(projects.feature.pos.data)
-    implementation(projects.feature.cart.data)
-    implementation(projects.feature.transactionHistory.data)
 
     implementation(libs.timber)
     implementation(libs.androidx.activity.compose)
@@ -106,25 +85,16 @@ dependencies {
     ksp(libs.hilt.compiler)
 
     debugImplementation(libs.androidx.compose.ui.testManifest)
-//    debugImplementation(projects.uiTestHiltManifest)
 
     kspTest(libs.hilt.compiler)
 
-//    testImplementation(projects.core.dataTest)
-//    testImplementation(projects.core.datastoreTest)
     testImplementation(libs.hilt.android.testing)
-//    testImplementation(projects.sync.syncTest)
     testImplementation(libs.kotlin.test)
 
     testDemoImplementation(libs.androidx.navigation.testing)
     testDemoImplementation(libs.robolectric)
     testDemoImplementation(libs.roborazzi)
-//    testDemoImplementation(projects.core.screenshotTesting)
-//    testDemoImplementation(projects.core.testing)
 
-//    androidTestImplementation(projects.core.testing)
-//    androidTestImplementation(projects.core.dataTest)
-//    androidTestImplementation(projects.core.datastoreTest)
     androidTestImplementation(libs.androidx.test.espresso.core)
     androidTestImplementation(libs.androidx.compose.ui.test)
     androidTestImplementation(libs.hilt.android.testing)

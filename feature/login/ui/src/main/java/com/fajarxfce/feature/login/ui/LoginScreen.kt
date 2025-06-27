@@ -5,23 +5,18 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Email
-import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.LoadingIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBar
@@ -33,20 +28,11 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.StrokeCap
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.fajarxfce.core.ui.component.CashierText
-import com.fajarxfce.core.ui.component.CashierTextH5Text
-import com.fajarxfce.core.ui.component.button.BigActionButtonCompose
-import com.fajarxfce.core.ui.component.dialog.CashierDialog
-import com.fajarxfce.core.ui.component.textfield.CashierTextField
 import com.fajarxfce.core.ui.extension.collectWithLifecycle
-import com.fajarxfce.core.ui.extension.noRippleClickable
 import com.fajarxfce.core.ui.theme.AppTheme
 import com.fajarxfce.core.ui.theme.CashierBlue
-import com.fajarxfce.core.ui.theme.CashierGray
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 
@@ -105,19 +91,6 @@ internal fun LoginScreen(
         )
     }
 
-    if (uiState.dialogState != null) {
-        CashierDialog(
-            onDismissRequest = {
-                if (uiState.dialogState.isSuccess == true) {
-                    onAction(LoginContract.UiAction.OnDialogDismiss)
-                } else {
-                    onAction(LoginContract.UiAction.OnDialogDismiss)
-                }
-            },
-            isSuccess = uiState.dialogState.isSuccess,
-            onConfirm = { onAction(LoginContract.UiAction.OnDialogDismiss) },
-        )
-    }
 
     if (uiState.isLoading) {
         Box(
@@ -154,45 +127,7 @@ internal fun LoginContent(
             .padding(horizontal = 24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        CashierTextH5Text(
-            text = "Sign In",
-            style = MaterialTheme.typography.headlineMedium,
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        CashierText(
-            text = "Enter your email and password to sign in into your account",
-            color = CashierGray,
-            textAlign = TextAlign.Center,
-        )
-        Spacer(modifier = Modifier.height(24.dp))
-        CashierTextField(
-            value = uiState.email,
-            onValueChange = { onEmailChange(it) },
-            placeholder = "Enter your email",
-            icon = Icons.Default.Email,
-            keyboardType = KeyboardType.Email,
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        CashierTextField(
-            value = uiState.password,
-            onValueChange = { onPasswordChange(it) },
-            placeholder = "Enter your password",
-            icon = Icons.Default.Lock,
-            isPassword = true,
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        CashierText(
-            modifier = Modifier
-                .align(Alignment.End)
-                .noRippleClickable { onForgotPasswordClick() },
-            text = "Forgot Password?",
-            color = MaterialTheme.colorScheme.primary,
-        )
-        Spacer(modifier = Modifier.height(34.dp))
-        BigActionButtonCompose(
-            buttonText = "Sign In",
-            onClick = onLoginClick,
-        )
+
     }
 }
 

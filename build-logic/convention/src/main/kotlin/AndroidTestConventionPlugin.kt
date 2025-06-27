@@ -15,8 +15,8 @@
  */
 
 import com.android.build.gradle.TestExtension
-import com.fajarxfce.apps.configureGradleManagedDevices
-import com.fajarxfce.apps.configureKotlinAndroid
+import com.fajarxfce.test4.configureGradleManagedDevices
+import com.fajarxfce.test4.configureKotlinAndroid
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply

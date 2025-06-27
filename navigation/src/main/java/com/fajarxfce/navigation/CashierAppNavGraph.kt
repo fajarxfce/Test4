@@ -37,33 +37,6 @@ fun CashierAppNavGraph(
             animationSpec = tween(700)
         ) },
     ) {
-        splashScreen(
-            onNavigateToHome = {
-                navController.apply {
-                    navigate(Home) {
-                        popUpTo(Splash) {
-                            inclusive = true
-                        }
-                    }
-                }
-            },
-            onNavigateToWelcome = {
-                navController.apply {
-                    navigate(OnBoarding) {
-                        popUpTo(Splash) {
-                            inclusive = true
-                        }
-                    }
-                }
-            },
-        )
-        onBoardingScreen(
-            onNavigateToLogin = {
-                navController.apply {
-                    navigate(Login)
-                }
-            },
-        )
         loginScreen(
             onNavigateToHome = {
                 navController.apply {
@@ -78,56 +51,6 @@ fun CashierAppNavGraph(
                 navController.popBackStack()
             },
             onNavigateToRegister = {},
-        )
-        homeScreen(
-            onNavigateDetail = {},
-            onNavigateSearch = {},
-            onNavigateDetailWithArgs = {},
-            onOpenDrawer = onOpenDrawer,
-            onNavigateToPos = {
-                navController.apply {
-                    navigate(Pos)
-                }
-            },
-            onNavigateToReport = {
-                navController.apply {
-                    navigate(Cart)
-                }
-            },
-            onNavigateToHistory = {
-                navController.apply {
-                    navigate(TransactionHistoryRoute)
-                }
-            }
-        )
-        posScreen(
-            onNavigateBack = {
-                navController.popBackStack()
-            },
-            onNavigateDetail = {
-                navController.apply {
-                    popBackStack()
-                }
-            },
-            onNavigateToCart = {
-                navController.apply {
-                    navigate(Cart)
-                }
-            }
-        )
-
-        transactionHistoryScreen(
-            onNavigateBack = {},
-            onTransactionClick = { transactionId ->
-
-            },
-        )
-        cartScreen(
-            onNavigateBack = {
-                navController.apply {
-                    popBackStack()
-                }
-            }
         )
     }
 }

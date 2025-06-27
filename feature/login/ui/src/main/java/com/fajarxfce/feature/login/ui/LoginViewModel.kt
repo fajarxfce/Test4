@@ -2,13 +2,10 @@ package com.fajarxfce.feature.login.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.fajarxfce.core.result.fold
-import com.fajarxfce.core.ui.component.DialogState
+import com.fajarxfce.core.domain.usecase.LoginUseCase
 import com.fajarxfce.core.ui.delegate.mvi.MVI
 import com.fajarxfce.core.ui.delegate.mvi.mvi
-import com.fajarxfce.feature.login.domain.usecase.LoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

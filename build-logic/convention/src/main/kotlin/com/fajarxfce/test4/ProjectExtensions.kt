@@ -14,23 +14,12 @@
  *   limitations under the License.
  */
 
-import com.fajarxfce.test4.configureKotlinJvm
-import com.fajarxfce.test4.libs
-import org.gradle.api.Plugin
+package com.fajarxfce.test4
+
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.apply
-import org.gradle.kotlin.dsl.dependencies
+import org.gradle.api.artifacts.VersionCatalog
+import org.gradle.api.artifacts.VersionCatalogsExtension
+import org.gradle.kotlin.dsl.getByType
 
-class JvmLibraryConventionPlugin : Plugin<Project> {
-    override fun apply(target: Project) {
-        with(target) {
-            apply(plugin = "org.jetbrains.kotlin.jvm")
-            apply(plugin = "nowinandroid.android.lint")
-
-            configureKotlinJvm()
-            dependencies {
-                "testImplementation"(libs.findLibrary("kotlin.test").get())
-            }
-        }
-    }
-}
+val Project.libs
+    get(): VersionCatalog = extensions.getByType<VersionCatalogsExtension>().named("libs")

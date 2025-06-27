@@ -16,7 +16,7 @@
 
 import com.android.build.api.dsl.ApplicationExtension
 import com.google.firebase.crashlytics.buildtools.gradle.CrashlyticsExtension
-import com.fajarxfce.apps.libs
+import com.fajarxfce.test4.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply

@@ -1,35 +1,23 @@
 package com.fajarxfce.feature.login.data.repository
 
-import android.util.Log
-import com.fajarxfce.core.datastore.NiaPreferencesDataSource
+import com.fajarxfce.core.Resource
+import com.fajarxfce.core.domain.repository.LoginRepository
 import com.fajarxfce.core.network.safeApiCall
-import com.fajarxfce.core.result.Resource
-import com.fajarxfce.core.result.map
-import com.fajarxfce.core.result.onFailure
-import com.fajarxfce.core.result.onSuccess
-import com.fajarxfce.feature.login.data.model.LoginRequest
 import com.fajarxfce.feature.login.data.source.LoginApi
-import com.fajarxfce.feature.login.domain.repository.LoginRepository
-import timber.log.Timber
+import com.fajarxfce.feature.login.data.source.remote.request.LoginRequest
 import javax.inject.Inject
 
 internal class LoginRepositoryImpl @Inject constructor(
     private val api: LoginApi,
-    private val preferencesDataSource: NiaPreferencesDataSource,
 ) : LoginRepository{
-    override suspend fun login(
-        email: String,
+    override suspend fun loginWithUsernameAndPassword(
+        username: String,
         password: String,
     ): Resource<Unit> {
         val request = LoginRequest(
-            email = email,
+            username = username,
             password = password,
         )
-        return safeApiCall { api.login(request) }.onSuccess {
-            Log.d("LoginRepositoryImpl", "login: ${it}")
-            preferencesDataSource.setAuthToken(token = it.data?.token.toString())
-        }.map {
-            it.message.orEmpty()
-        }
+        return safeApiCall { api.login(request) }
     }
 }

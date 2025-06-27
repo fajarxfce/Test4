@@ -1,1 +1,0 @@
--keep class com.fajarxfce.feature.transactionhistory.data.model.** { *; }

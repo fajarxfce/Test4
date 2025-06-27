@@ -1,11 +1,11 @@
 package com.fajarxfce.core.network
 
-import com.fajarxfce.core.exception.AuthorizationException
-import com.fajarxfce.core.exception.BadRequestException
-import com.fajarxfce.core.exception.NetworkException
-import com.fajarxfce.core.exception.NotFoundException
-import com.fajarxfce.core.exception.UnknownException
-import com.fajarxfce.core.result.Resource
+import com.fajarxfce.core.AuthorizationException
+import com.fajarxfce.core.BadRequestException
+import com.fajarxfce.core.NetworkException
+import com.fajarxfce.core.NotFoundException
+import com.fajarxfce.core.Resource
+import com.fajarxfce.core.UnknownException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json

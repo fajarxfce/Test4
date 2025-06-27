@@ -15,7 +15,7 @@
  */
 
 import com.android.build.api.dsl.ApplicationExtension
-import com.fajarxfce.apps.configureFlavors
+import com.fajarxfce.test4.configureFlavors
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure

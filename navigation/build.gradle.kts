@@ -23,11 +23,5 @@ dependencies {
     androidTestImplementation(libs.bundles.androidx.compose.ui.test)
     implementation(projects.core.ui)
 
-    implementation(projects.feature.home.ui)
-    implementation(projects.feature.splash.ui)
-    implementation(projects.feature.onboarding.ui)
     implementation(projects.feature.login.ui)
-    implementation(projects.feature.pos.ui)
-    implementation(projects.feature.transactionHistory.ui)
-    implementation(projects.feature.cart.ui)
 }

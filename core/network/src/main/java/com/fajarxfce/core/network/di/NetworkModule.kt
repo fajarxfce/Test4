@@ -1,10 +1,6 @@
 package com.fajarxfce.core.network.di
 
-import com.fajarxfce.core.network.api.AuthApiService
-import com.fajarxfce.core.network.interceptor.AuthInterceptor
 import com.fajarxfce.core.network.BuildConfig
-import com.fajarxfce.core.network.api.ProductApiService
-import com.fajarxfce.core.network.interceptor.UnauthorizedInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,18 +21,13 @@ internal object NetworkModule {
             level = HttpLoggingInterceptor.Level.BODY
         }
     }
-
     @Provides
     @Singleton
-    fun provideOkHttpClientWithLoggingInterceptor(
+    fun provideOkHttpClient(
         loggingInterceptor: HttpLoggingInterceptor,
-        authInterceptor: AuthInterceptor,
-        unauthorizedInterceptor: UnauthorizedInterceptor
     ): OkHttpClient {
         return OkHttpClient.Builder()
-            .addInterceptor(authInterceptor)
             .addInterceptor(loggingInterceptor)
-            .addInterceptor(unauthorizedInterceptor)
             .build()
     }
 
@@ -50,22 +41,6 @@ internal object NetworkModule {
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-    }
-
-    @Provides
-    @Singleton
-    fun provideApiService(
-        retrofit: Retrofit
-    ): AuthApiService {
-        return retrofit.create(AuthApiService::class.java)
-    }
-
-    @Provides
-    @Singleton
-    fun provideProductApiService(
-        retrofit: Retrofit
-    ): ProductApiService {
-        return retrofit.create(ProductApiService::class.java)
     }
 
 }

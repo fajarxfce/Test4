@@ -21,7 +21,7 @@ plugins {
     alias(libs.plugins.android.lint)
 }
 
-group = "com.fajarxfce.apps.buildlogic"
+group = "com.fajarxfce.test4.buildlogic"
 
 // Configure the build-logic plugins to target JDK 17
 // This matches the JDK used to build the project, and is not related to what is running on device.

@@ -16,12 +16,12 @@
 
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import com.android.build.gradle.LibraryExtension
-import com.fajarxfce.apps.configureFlavors
-import com.fajarxfce.apps.configureGradleManagedDevices
-import com.fajarxfce.apps.configureKotlinAndroid
-import com.fajarxfce.apps.configurePrintApksTask
-import com.fajarxfce.apps.disableUnnecessaryAndroidTests
-import com.fajarxfce.apps.libs
+import com.fajarxfce.test4.configureFlavors
+import com.fajarxfce.test4.configureGradleManagedDevices
+import com.fajarxfce.test4.configureKotlinAndroid
+import com.fajarxfce.test4.configurePrintApksTask
+import com.fajarxfce.test4.disableUnnecessaryAndroidTests
+import com.fajarxfce.test4.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply

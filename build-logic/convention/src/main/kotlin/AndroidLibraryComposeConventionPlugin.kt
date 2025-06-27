@@ -15,7 +15,7 @@
  */
 
 import com.android.build.gradle.LibraryExtension
-import com.fajarxfce.apps.configureAndroidCompose
+import com.fajarxfce.test4.configureAndroidCompose
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply

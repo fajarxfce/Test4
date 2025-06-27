@@ -18,8 +18,6 @@ android {
 
 
 dependencies {
-    api(projects.core.model)
     api(projects.core.common)
-    api(projects.core.datastore)
     implementation(libs.kotlinx.coroutines.core)
 }
