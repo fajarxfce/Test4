@@ -64,7 +64,7 @@ internal fun LoginScreen(
             TopAppBar(
                 title = { },
                 navigationIcon = {
-                    IconButton(onClick = { onAction(LoginContract.UiAction.OnBackClick) }) {
+                    IconButton(onClick = {  }) {
                         Icon(Icons.Default.ArrowBack, contentDescription = "Back")
                     }
                 },
@@ -81,11 +81,7 @@ internal fun LoginScreen(
         ) { paddingValues ->
         LoginContent(
             uiState = uiState,
-            onEmailChange = { onAction(LoginContract.UiAction.OnEmailChange(it)) },
-            onPasswordChange = { onAction(LoginContract.UiAction.OnPasswordChange(it)) },
             onLoginClick = { onAction(LoginContract.UiAction.OnLoginClick) },
-            onForgotPasswordClick = { onAction(LoginContract.UiAction.OnForgotPasswordClick) },
-            onRegisterClick = { onAction(LoginContract.UiAction.OnRegisterClick) },
             modifier = Modifier
                 .padding(paddingValues),
         )
@@ -115,11 +111,7 @@ internal fun LoginScreen(
 internal fun LoginContent(
     modifier: Modifier,
     uiState: LoginContract.UiState,
-    onEmailChange: (String) -> Unit,
-    onPasswordChange: (String) -> Unit,
     onLoginClick: () -> Unit,
-    onForgotPasswordClick: () -> Unit,
-    onRegisterClick: () -> Unit,
 ) {
     Column(
         modifier = modifier
