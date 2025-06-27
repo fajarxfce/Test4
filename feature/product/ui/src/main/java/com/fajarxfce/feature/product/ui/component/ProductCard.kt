@@ -35,6 +35,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import com.fajarxfce.core.designsystem.component.Test4Image
+import com.fajarxfce.core.designsystem.component.card.Test4Card
 import com.fajarxfce.core.designsystem.theme.AppTheme
 import com.fajarxfce.core.domain.model.Product
 import java.text.NumberFormat
@@ -44,37 +46,27 @@ import java.util.Locale
 fun ProductCard(
     product: Product,
     onProductClick: (String) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
-    Card(
+    Test4Card(
         modifier = modifier
             .width(180.dp)
             .clickable { onProductClick(product.productId.toString()) },
-        shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surface
-        ),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 8.dp,
-            pressedElevation = 12.dp
-        )
     ) {
         Column {
-            // Product Image with gradient overlay
+
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .aspectRatio(1.2f)
-                    .clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp))
+                    .clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)),
             ) {
-                AsyncImage(
+                Test4Image(
                     model = product.productImage,
                     contentDescription = product.productName,
                     modifier = Modifier.fillMaxSize(),
-                    contentScale = ContentScale.Crop
                 )
 
-                // Gradient overlay for better text readability
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
@@ -82,12 +74,12 @@ fun ProductCard(
                             Brush.verticalGradient(
                                 colors = listOf(
                                     Color.Transparent,
-                                    Color.Black.copy(alpha = 0.3f)
+                                    Color.Black.copy(alpha = 0.3f),
                                 ),
                                 startY = 0f,
-                                endY = Float.POSITIVE_INFINITY
-                            )
-                        )
+                                endY = Float.POSITIVE_INFINITY,
+                            ),
+                        ),
                 )
 
                 // Rating badge (you can customize this based on your needs)
@@ -97,26 +89,26 @@ fun ProductCard(
                         .padding(8.dp)
                         .background(
                             MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.9f),
-                            RoundedCornerShape(12.dp)
+                            RoundedCornerShape(12.dp),
                         )
-                        .padding(horizontal = 8.dp, vertical = 4.dp)
+                        .padding(horizontal = 8.dp, vertical = 4.dp),
                 ) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(2.dp)
+                        horizontalArrangement = Arrangement.spacedBy(2.dp),
                     ) {
                         Icon(
                             imageVector = Icons.Default.Star,
                             contentDescription = "Rating",
                             modifier = Modifier.size(12.dp),
-                            tint = Color(0xFFFFB000)
+                            tint = Color(0xFFFFB000),
                         )
                         Text(
                             text = "4.8",
                             style = MaterialTheme.typography.labelSmall,
                             color = MaterialTheme.colorScheme.onPrimaryContainer,
                             fontSize = 10.sp,
-                            fontWeight = FontWeight.Medium
+                            fontWeight = FontWeight.Medium,
                         )
                     }
                 }
@@ -124,7 +116,7 @@ fun ProductCard(
 
             // Product Information
             Column(
-                modifier = Modifier.padding(12.dp)
+                modifier = Modifier.padding(12.dp),
             ) {
                 // Product Name
                 Text(
@@ -134,7 +126,7 @@ fun ProductCard(
                     fontWeight = FontWeight.SemiBold,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
-                    lineHeight = 18.sp
+                    lineHeight = 18.sp,
                 )
 
                 Spacer(modifier = Modifier.height(4.dp))
@@ -147,7 +139,7 @@ fun ProductCard(
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
                     fontSize = 12.sp,
-                    lineHeight = 16.sp
+                    lineHeight = 16.sp,
                 )
 
                 Spacer(modifier = Modifier.height(8.dp))
@@ -156,21 +148,21 @@ fun ProductCard(
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Column {
                         Text(
                             text = "Harga",
                             style = MaterialTheme.typography.labelSmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            fontSize = 10.sp
+                            fontSize = 10.sp,
                         )
                         Text(
                             text = formatPrice(product.productPrice ?: 0),
                             style = MaterialTheme.typography.titleMedium,
                             color = MaterialTheme.colorScheme.primary,
                             fontWeight = FontWeight.Bold,
-                            fontSize = 16.sp
+                            fontSize = 16.sp,
                         )
                     }
                 }
@@ -193,9 +185,9 @@ private fun ProductCardPreview() {
                 productName = "Mie Ayam Geprek",
                 productImage = "https://img-global.cpcdn.com/recipes/cc6ef49a7ddb226d/680x482cq70/indomie-goreng-ayam-geprek-foto-resep-utama.jpg",
                 productDesc = "Mie ayam Geprek sambel bawang",
-                productPrice = 27800
+                productPrice = 27800,
             ),
-            onProductClick = {}
+            onProductClick = {},
         )
     }
 }
