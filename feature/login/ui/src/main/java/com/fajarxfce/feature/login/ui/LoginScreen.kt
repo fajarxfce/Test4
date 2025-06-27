@@ -62,12 +62,12 @@ internal fun LoginScreen(
     uiState: LoginContract.UiState,
     uiEffect: Flow<LoginContract.UiEffect>,
     onAction: (LoginContract.UiAction) -> Unit,
-    onNavigateToHome: () -> Unit,
+    onNavigateToProduct: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     uiEffect.collectWithLifecycle { effect ->
         when (effect) {
-            is LoginContract.UiEffect.NavigateToHome -> onNavigateToHome()
+            is LoginContract.UiEffect.NavigateToHome -> onNavigateToProduct()
         }
     }
 
@@ -261,7 +261,7 @@ private fun LoginScreenPreview() {
             uiState = LoginContract.UiState(),
             uiEffect = emptyFlow(),
             onAction = {},
-            onNavigateToHome = {},
+            onNavigateToProduct = {},
         )
     }
 }
@@ -277,7 +277,7 @@ private fun LoginScreenLoadingPreview() {
             ),
             uiEffect = emptyFlow(),
             onAction = {},
-            onNavigateToHome = {},
+            onNavigateToProduct = {},
         )
     }
 }
@@ -293,7 +293,7 @@ private fun LoginScreenDialogPreview() {
             ),
             uiEffect = emptyFlow(),
             onAction = {},
-            onNavigateToHome = {},
+            onNavigateToProduct = {},
         )
     }
 }

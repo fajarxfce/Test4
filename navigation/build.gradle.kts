@@ -24,4 +24,5 @@ dependencies {
     implementation(projects.core.ui)
 
     implementation(projects.feature.login.ui)
+    implementation(projects.feature.product.ui)
 }

@@ -7,7 +7,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.fajarxfce.feature.login.ui.navigation.Login
-import com.fajarxfce.feature.login.ui.navigation.loginScreen
+import com.fajarxfce.feature.login.ui.navigation.loginGraph
+import com.fajarxfce.feature.product.ui.navigation.Product
+import com.fajarxfce.feature.product.ui.navigation.productGraph
 
 @Composable
 fun Test4AppNavGraph(
@@ -23,11 +25,19 @@ fun Test4AppNavGraph(
             animationSpec = tween(700)
         ) },
     ) {
-        loginScreen(
-            onNavigateToHome = {
+        loginGraph(
+            onNavigateToProduct = {
                 navController.apply {
+                    navigate(Product){
+                        popUpTo(Login){
+                            inclusive = true
+                        }
+                    }
                 }
             },
+        )
+        productGraph(
+
         )
     }
 }
