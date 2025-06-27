@@ -34,6 +34,9 @@ class ProductViewModel @Inject constructor(
             is ProductContract.UiAction.OnShowProductDetail -> {
                 getProductById(action.productId)
             }
+
+            ProductContract.UiAction.ShowBottomSheet -> updateUiState { copy(isBottomsheetOpen = true) }
+            ProductContract.UiAction.HideBottomsheet -> updateUiState { copy(isBottomsheetOpen = false) }
         }
     }
 

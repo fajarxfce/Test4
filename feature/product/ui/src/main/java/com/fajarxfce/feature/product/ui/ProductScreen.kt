@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -16,19 +15,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.compose.ui.unit.dp
 import com.fajarxfce.core.domain.model.Product
 import com.fajarxfce.core.ui.extension.collectWithLifecycle
 import com.fajarxfce.feature.product.ui.component.ProductCard
@@ -44,13 +36,8 @@ fun ProductScreen(
     uiState: ProductContract.UiState,
     uiEffect: Flow<ProductContract.UiEffect>,
     uiAction: (ProductContract.UiAction) -> Unit,
+    productState: ProductState = rememberProductState(),
 ) {
-    var showBottomSheet by remember { mutableStateOf(false) }
-    val bottomSheetState = rememberModalBottomSheetState(
-        skipPartiallyExpanded = true,
-    )
-    val scope = rememberCoroutineScope()
-
 
     uiEffect.collectWithLifecycle { effect ->
         when (effect) {
@@ -59,7 +46,7 @@ fun ProductScreen(
             }
 
             is ProductContract.UiEffect.ShowProductDetail -> {
-                showBottomSheet = true
+                uiAction(ProductContract.UiAction.ShowBottomSheet)
             }
         }
     }
@@ -84,11 +71,16 @@ fun ProductScreen(
                 .fillMaxSize()
                 .padding(innerPadding),
             uiState = uiState,
-            onProductClick = { productId -> uiAction(ProductContract.UiAction.OnShowProductDetail(productId))}
+            onProductClick = { productId ->
+                uiAction(
+                    ProductContract.UiAction.OnShowProductDetail(
+                        productId,
+                    ),
+                )
+            },
         )
 
     }
-
 
     if (uiState.isLoading) {
         Box(
@@ -135,17 +127,15 @@ fun ProductScreen(
         }
     }
 
-
-
-    if (showBottomSheet && uiState.selectedProduct != null) {
+    if (uiState.isBottomsheetOpen && uiState.selectedProduct != null) {
         ProductDetailBottomSheet(
             product = uiState.selectedProduct,
-            sheetState = bottomSheetState,
+            sheetState = productState.bottomSheetState,
             onDismiss = {
-                scope.launch {
-                    bottomSheetState.hide()
+                productState.scope.launch {
+                    productState.bottomSheetState.hide()
                 }.invokeOnCompletion {
-                    showBottomSheet = false
+                    uiAction(ProductContract.UiAction.HideBottomsheet)
                 }
             },
         )
@@ -171,7 +161,9 @@ fun ProductContent(
         ) { product ->
             ProductCard(
                 product = product,
-                onProductClick = { productId -> onProductClick(productId.toInt()) },
+                onProductClick = { productId ->
+                    onProductClick(productId.toInt())
+                },
             )
         }
     }
@@ -189,11 +181,38 @@ fun ProductScreenPreview() {
                     productName = "Produk 1",
                     productDesc = "Deskripsi Produk 1",
                     productPrice = 10000,
-                    productImage = "https://via.placeholder.com/150"
-                )
-            )
+                    productImage = "https://via.placeholder.com/150",
+                ),
+            ),
         ),
         uiEffect = flowOf(),
-        uiAction = {}
+        uiAction = {},
+    )
+}
+
+@Preview
+@Composable
+fun ProductScreenWithBottomsheetPreview() {
+    ProductScreen(
+        uiState = ProductContract.UiState(
+            selectedProduct = Product(
+                productId = 1,
+                productName = "Produk 1",
+                productDesc = "Deskripsi Produk 1",
+                productPrice = 10000,
+                productImage = "https://via.placeholder.com/150",
+            ),
+            products = listOf(
+                Product(
+                    productId = 1,
+                    productName = "Produk 1",
+                    productDesc = "Deskripsi Produk 1",
+                    productPrice = 10000,
+                    productImage = "https://via.placeholder.com/150",
+                ),
+            ),
+        ),
+        uiEffect = flowOf(),
+        uiAction = {},
     )
 }
