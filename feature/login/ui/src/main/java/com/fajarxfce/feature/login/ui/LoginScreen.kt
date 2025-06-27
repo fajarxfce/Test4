@@ -1,5 +1,6 @@
 package com.fajarxfce.feature.login.ui
 
+import android.util.Patterns
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -23,6 +24,7 @@ import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -98,9 +100,42 @@ internal fun LoginScreen(
             onLoginClick = { onAction(LoginContract.UiAction.OnLoginClick) },
             modifier = Modifier
                 .padding(paddingValues),
+            onUsernameChanged = { onAction(LoginContract.UiAction.OnUsernameChanged(it)) },
+            onPasswordChanged = { onAction(LoginContract.UiAction.OnPasswordChanged(it)) },
         )
     }
 
+    if (uiState.error != null) {
+        ModalBottomSheet(
+            onDismissRequest = { onAction(LoginContract.UiAction.OnErrorDismissed) },
+            sheetState = sheetState,
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(24.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                Text(
+                    text = "Login Failed",
+                    style = MaterialTheme.typography.headlineSmall,
+                    fontWeight = FontWeight.Bold,
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = uiState.error,
+                    style = MaterialTheme.typography.bodyLarge,
+                    textAlign = TextAlign.Center,
+                )
+                Spacer(modifier = Modifier.height(24.dp))
+                Test4Button(
+                    text = "OK",
+                    onClick = { onAction(LoginContract.UiAction.OnErrorDismissed) },
+                    modifier = Modifier.fillMaxWidth(),
+                )
+            }
+        }
+    }
 
     if (uiState.isLoading) {
         Box(
@@ -119,6 +154,8 @@ internal fun LoginScreen(
             )
         }
     }
+
+
 }
 
 @Composable
@@ -126,9 +163,9 @@ internal fun LoginContent(
     modifier: Modifier,
     uiState: LoginContract.UiState,
     onLoginClick: () -> Unit,
+    onUsernameChanged: (String) -> Unit,
+    onPasswordChanged: (String) -> Unit,
 ) {
-    var username = uiState.email
-    var password = uiState.password
     var usernameError by remember { mutableStateOf("") }
     var passwordError by remember { mutableStateOf("") }
     val focusManager = LocalFocusManager.current
@@ -160,12 +197,9 @@ internal fun LoginContent(
 
         // Email Field
         Test4TextField(
-            value = username,
-            onValueChange = {
-                username = it
-                usernameError = ""
-            },
-            label = stringResource(R.string.feature_login_ui_email),
+            value = uiState.username,
+            onValueChange = { onUsernameChanged(it) },
+            label = stringResource(R.string.feature_login_ui_username),
             placeholder = stringResource(R.string.feature_login_ui_enter_your_email),
             isError = usernameError.isNotEmpty(),
             errorText = usernameError,
@@ -183,11 +217,8 @@ internal fun LoginContent(
 
         // Password Field
         Test4PasswordTextField(
-            value = password,
-            onValueChange = {
-                password = it
-                passwordError = ""
-            },
+            value = uiState.password,
+            onValueChange = { onPasswordChanged(it) },
             label = stringResource(R.string.feature_login_ui_password),
             placeholder = stringResource(R.string.feature_login_ui_enter_password),
             isError = passwordError.isNotEmpty(),
@@ -199,9 +230,7 @@ internal fun LoginContent(
             keyboardActions = KeyboardActions(
                 onDone = {
                     focusManager.clearFocus()
-                    if (validateInput(username, password)) {
-                        onLoginClick()
-                    }
+                    onLoginClick()
                 },
             ),
             modifier = Modifier.fillMaxWidth(),
@@ -212,35 +241,15 @@ internal fun LoginContent(
         // Login Button
         Test4Button(
             text = stringResource(R.string.feature_login_ui_login),
-            onClick = {
-                focusManager.clearFocus()
-
-                // Simple validation
-                val isEmailValid =
-                    username.isNotBlank() && android.util.Patterns.EMAIL_ADDRESS.matcher(username)
-                        .matches()
-                val isPasswordValid = password.isNotBlank() && password.length >= 6
-
-                usernameError = if (!isEmailValid) {
-                    if (username.isBlank()) "Email is required" else "Please enter a valid email"
-                } else ""
-
-                passwordError = if (!isPasswordValid) {
-                    if (password.isBlank()) "Password is required" else "Password must be at least 6 characters"
-                } else ""
-
-                if (isEmailValid && isPasswordValid) {
-                    onLoginClick()
-                }
-            },
-            enabled = username.isNotBlank() && password.isNotBlank(),
+            onClick = { onLoginClick() },
+            enabled = uiState.username.isNotBlank() && uiState.password.isNotBlank(),
             modifier = Modifier.fillMaxWidth(),
         )
     }
 }
 private fun validateInput(email: String, password: String): Boolean {
     return email.isNotBlank() &&
-            android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches() &&
+            Patterns.EMAIL_ADDRESS.matcher(email).matches() &&
             password.isNotBlank() &&
             password.length >= 6
 }
@@ -264,7 +273,7 @@ private fun LoginScreenLoadingPreview() {
         LoginScreen(
             uiState = LoginContract.UiState(
                 isLoading = true,
-                email = "admin@email.com",
+                username = "admin@email.com",
             ),
             uiEffect = emptyFlow(),
             onAction = {},
@@ -279,7 +288,7 @@ private fun LoginScreenDialogPreview() {
     AppTheme {
         LoginScreen(
             uiState = LoginContract.UiState(
-                email = "admin@email.com",
+                username = "admin@email.com",
                 isLoading = false,
             ),
             uiEffect = emptyFlow(),
