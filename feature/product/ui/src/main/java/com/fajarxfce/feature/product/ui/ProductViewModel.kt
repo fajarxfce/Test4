@@ -45,9 +45,7 @@ class ProductViewModel @Inject constructor(
                 }
             }
             .onFailure {
-                Timber.tag("ProductViewModel").d("getProducts: $it")
                 updateUiState { copy(isLoading = false, errorMessage = it.message) }
-                emitUiEffect(ProductContract.UiEffect.ShowError(it.message ?: "Unknown error"))
             }
     }
 }
