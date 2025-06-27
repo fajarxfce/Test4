@@ -59,6 +59,7 @@ dependencies {
     implementation(projects.core.common)
     implementation(projects.core.designsystem)
     implementation(projects.feature.login.data)
+    implementation(projects.feature.product.data)
 
     implementation(libs.timber)
     implementation(libs.androidx.activity.compose)
