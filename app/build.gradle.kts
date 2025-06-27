@@ -16,7 +16,7 @@ android {
     defaultConfig {
         applicationId = "com.fajarxfce.test4"
         versionCode = 8
-        versionName = "0.1.2" // X.Y.Z; X = Major, Y = minor, Z = Patch level
+        versionName = "0.1.2"
 
         // Custom test runner to set up Hilt dependency graph
         testInstrumentationRunner = "com.fajarxfce.core.testing.NiaTestRunner"

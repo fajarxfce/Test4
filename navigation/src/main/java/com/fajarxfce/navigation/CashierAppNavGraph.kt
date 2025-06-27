@@ -30,10 +30,6 @@ fun CashierAppNavGraph(
                 navController.apply {
                 }
             },
-            onNavigateBack = {
-                navController.popBackStack()
-            },
-            onNavigateToRegister = {},
         )
     }
 }
