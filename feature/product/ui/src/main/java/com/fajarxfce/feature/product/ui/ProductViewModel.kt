@@ -57,10 +57,8 @@ class ProductViewModel @Inject constructor(
     private fun getProductById(productId: Int) = viewModelScope.launch {
         getProductByIdUseCase(productId)
             .onSuccess {
-                Timber.tag("ProductViewModel").d("getProductById: $it")
                 updateUiState {
                     copy(
-                        isLoading = false,
                         selectedProduct = it
                     )
                 }

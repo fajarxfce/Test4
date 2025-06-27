@@ -1,0 +1,1 @@
+-keep class com.fajarxfce.feature.product.data.source.remote.response.GetProductsResponse { *; }
