@@ -57,8 +57,7 @@ android {
 dependencies {
     implementation(projects.navigation)
     implementation(projects.core.common)
-    implementation(projects.core.ui)
-
+    implementation(projects.core.designsystem)
     implementation(projects.feature.login.data)
 
     implementation(libs.timber)

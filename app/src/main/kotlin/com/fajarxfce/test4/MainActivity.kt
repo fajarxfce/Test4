@@ -12,7 +12,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import com.fajarxfce.core.ui.theme.AppTheme
+import com.fajarxfce.core.designsystem.theme.AppTheme
 import com.fajarxfce.navigation.Test4AppNavGraph
 import dagger.hilt.android.AndroidEntryPoint
 

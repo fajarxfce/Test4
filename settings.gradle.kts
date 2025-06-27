@@ -41,6 +41,7 @@ check(JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_17)) {
 include(":app")
 include(":navigation")
 include(":core:common")
+include(":core:designsystem")
 include(":core:domain")
 include(":core:network")
 include(":core:ui")
