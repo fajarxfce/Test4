@@ -7,4 +7,7 @@ import retrofit2.http.GET
 interface ProductApiService {
     @GET("product")
     suspend fun getProducts(): BaseResponse<List<GetProductsResponse>>
+
+    @GET("product/{id}")
+    suspend fun getProductById(productId: Int): BaseResponse<GetProductsResponse>
 }

@@ -5,7 +5,6 @@ import com.fajarxfce.core.domain.model.Product
 import com.fajarxfce.core.domain.repository.ProductRepository
 import com.fajarxfce.core.map
 import com.fajarxfce.core.network.safeApiCall
-import com.fajarxfce.core.onSuccess
 import com.fajarxfce.feature.product.data.source.remote.ProductApiService
 import com.fajarxfce.feature.product.data.source.remote.response.GetProductsResponse
 import javax.inject.Inject
@@ -20,14 +19,9 @@ class ProductRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getProductById(productId: Int): Resource<Product> {
-        return Resource.Success(
-            Product(
-                productId = productId,
-                productName = "Sample Product",
-                productPrice = 0,
-                productDesc = "Sample Description",
-            ),
-        )
+        return safeApiCall { api.getProductById(productId) }.map {
+            it.toDomain()
+        }
     }
 }
 
@@ -41,4 +35,14 @@ fun List<GetProductsResponse?>?.toDomain(): List<Product> {
             productImage = dataItem?.productImage,
         )
     } ?: emptyList()
+}
+
+fun GetProductsResponse?.toDomain(): Product {
+    return Product(
+        productId = this?.productId ?: 0,
+        productName = this?.productName ?: "Unknown",
+        productPrice = this?.productPrice ?: 0,
+        productDesc = this?.productDesc ?: "No description",
+        productImage = this?.productImage,
+    )
 }
