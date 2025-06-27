@@ -38,7 +38,14 @@ internal class LoginViewModel @Inject constructor(
                 username = currentUiState.username,
                 password = currentUiState.password,
             )
-                .onSuccess { updateUiState { copy(isLoading = false) } }
+                .onSuccess {
+                    updateUiState {
+                        copy(
+                            isLoading = false,
+                        )
+                    }
+                    emitUiEffect(LoginContract.UiEffect.NavigateToHome)
+                }
                 .onFailure {
                     updateUiState {
                         copy(
