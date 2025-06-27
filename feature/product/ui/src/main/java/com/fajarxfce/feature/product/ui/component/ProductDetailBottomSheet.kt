@@ -78,13 +78,13 @@ fun ProductDetailBottomSheet(
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState())
         ) {
-            // Header with image and close button
+
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(280.dp)
             ) {
-                // Product Image
+
                 AsyncImage(
                     model = product.productImage,
                     contentDescription = product.productName,
@@ -94,7 +94,7 @@ fun ProductDetailBottomSheet(
                     contentScale = ContentScale.Crop
                 )
 
-                // Gradient overlay
+
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
@@ -110,7 +110,6 @@ fun ProductDetailBottomSheet(
                         )
                 )
 
-                // Top action buttons
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
