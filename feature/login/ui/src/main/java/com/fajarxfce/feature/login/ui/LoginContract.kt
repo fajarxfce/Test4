@@ -14,8 +14,6 @@ internal object LoginContract {
     }
 
     sealed interface UiEffect {
-        data object NavigateBack : UiEffect
-        data object NavigateToRegister : UiEffect
         data object NavigateToHome : UiEffect
     }
 }

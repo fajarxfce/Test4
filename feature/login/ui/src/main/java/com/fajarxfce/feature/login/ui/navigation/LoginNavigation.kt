@@ -24,8 +24,6 @@ import kotlinx.serialization.Serializable
 
 fun NavGraphBuilder.loginScreen(
     onNavigateToHome: () -> Unit,
-    onNavigateBack: () -> Unit = {},
-    onNavigateToRegister: () -> Unit = {},
 ) {
     composable<Login> {
         val viewModel = hiltViewModel<LoginViewModel>()
@@ -36,8 +34,6 @@ fun NavGraphBuilder.loginScreen(
             uiEffect = uiEffect,
             onAction = viewModel::onAction,
             onNavigateToHome = onNavigateToHome,
-            onNavigateBack = onNavigateBack,
-            onNavigateToRegister = onNavigateToRegister,
         )
     }
 }
