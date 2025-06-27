@@ -9,7 +9,6 @@ import androidx.navigation.NavDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.fajarxfce.navigation.NavigationItem
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -18,9 +17,6 @@ class AppState(
     val drawerState: DrawerState,
     val coroutineScope: CoroutineScope,
 ) {
-
-    val shouldShowDrawer: Boolean
-        @Composable get() = navController.currentBackStackEntryAsState().value?.destination?.route in NavigationItem.getNavigationRoutes()
 
     val currentDestination: NavDestination?
         @Composable get() = navController.currentBackStackEntryAsState().value?.destination

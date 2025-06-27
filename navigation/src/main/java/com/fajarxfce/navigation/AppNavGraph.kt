@@ -10,11 +10,9 @@ import com.fajarxfce.feature.login.ui.navigation.Login
 import com.fajarxfce.feature.login.ui.navigation.loginScreen
 
 @Composable
-fun CashierAppNavGraph(
+fun Test4AppNavGraph(
     modifier: Modifier = Modifier,
     navController: NavHostController,
-    onOpenDrawer: () -> Unit = {},
-    onCloseDrawer: () -> Unit = {},
 ) {
     NavHost(
         navController = navController,

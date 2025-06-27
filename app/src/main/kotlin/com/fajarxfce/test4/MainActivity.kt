@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.fajarxfce.core.ui.theme.AppTheme
-import com.fajarxfce.navigation.CashierAppNavGraph
+import com.fajarxfce.navigation.Test4AppNavGraph
 import dagger.hilt.android.AndroidEntryPoint
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -41,10 +41,9 @@ fun MainAppScreen(appState: AppState) {
     Scaffold(
         containerColor = Color.White,
     ) { innerPadding ->
-        CashierAppNavGraph(
+        Test4AppNavGraph(
             navController = appState.navController,
             modifier = Modifier.fillMaxSize(),
-            onOpenDrawer = appState::openDrawer,
         )
     }
 }
