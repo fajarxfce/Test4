@@ -7,14 +7,16 @@ object ProductContract {
         val isLoading: Boolean = false,
         val errorMessage: String? = null,
         val products: List<Product> = emptyList(),
+        val selectedProduct: Product? = null
     )
     sealed interface UiEffect {
         data class ShowError(val message: String) : UiEffect
-        data class OpenProductDetail(val productId: String) : UiEffect
+        data object ShowProductDetail : UiEffect
     }
     sealed interface UiAction {
         data class OnProductClick(val productId: String) : UiAction
         data object LoadProducts : UiAction
+        data class OnShowProductDetail(val productId: Int) : UiAction
         object OnRefresh : UiAction
         object OnRetry : UiAction
     }
