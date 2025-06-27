@@ -1,0 +1,27 @@
+plugins {
+    alias(libs.plugins.nowinandroid.android.library)
+    alias(libs.plugins.nowinandroid.hilt)
+    alias(libs.plugins.nowinandroid.android.feature)
+    alias(libs.plugins.nowinandroid.android.room)
+    id("kotlinx-serialization")
+}
+
+android {
+    defaultConfig {
+        consumerProguardFiles("consumer-rules.pro")
+    }
+    namespace = "com.fajarxfce.feature.cart.data"
+}
+
+dependencies {
+    implementation(projects.core.common)
+    implementation(projects.core.database)
+    implementation(projects.core.model)
+    implementation(projects.core.domain)
+    implementation(projects.feature.cart.domain)
+    implementation(libs.retrofit.core)
+    implementation(projects.core.network)
+    implementation(projects.core.datastore)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.converter.gson)
+}
